@@ -248,8 +248,11 @@
   </div>
     <div class="step-indicators" id="step-indicators"></div>
 
+    <!-- Start Form Area -->
     <form id="questionForm" method="dialog">
+      <!-- Question Area -->
       <div id="questions-container"></div>
+      <!-- Button Design -->
       <div class="buttons">
         <button type="button" id="prevBtn" class="nav-btn" onclick="prevStep()">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
@@ -265,6 +268,8 @@
           </svg>
         </button>
       </div>
+
+      <!-- End Form Area -->
     </form>
   </div>
 
@@ -310,10 +315,10 @@ function addQuestions() {
     noLabel.innerHTML = `<input type="radio" name="q${index + 1}" value="no" onclick="markAnswered(${index})"><span class="checkmark"></span>No`;
     questionDiv.appendChild(noLabel);
 
-    const maybeLabel = document.createElement('label');
-    maybeLabel.className = 'radio-container';
-    maybeLabel.innerHTML = `<input type="radio" name="q${index + 1}" value="maybe" onclick="markAnswered(${index})"><span class="checkmark"></span>Maybe`;
-    questionDiv.appendChild(maybeLabel);
+    // const maybeLabel = document.createElement('label');
+    // maybeLabel.className = 'radio-container';
+    // maybeLabel.innerHTML = `<input type="radio" name="q${index + 1}" value="maybe" onclick="markAnswered(${index})"><span class="checkmark"></span>Maybe`;
+    // questionDiv.appendChild(maybeLabel);
 
     container.appendChild(questionDiv);
   });
@@ -378,16 +383,18 @@ function submitForm() {
 
   // Expanded redirection logic with 4 redirection cases
   switch (true) {
-    case (q1 === 'yes' && q2 === 'yes' && q3 === 'yes'):
+    case (q1 === 'yes' && q2 === 'yes' && q3 === 'no' && q4 === 'no'  && q5 === 'no'  && q6 === 'yes'):
+
+
       window.location.href = "all-yes-page.html"; // Redirect if all first three are "yes"
       break;
-    case (q1 === 'no' && q2 === 'no' && q3 === 'no'):
+    case (q1 === 'no' && q2 === 'yes'):
       window.location.href = "all-no-page.html"; // Redirect if all first three are "no"
       break;
-    case (q1 === 'maybe' && q2 === 'maybe' && q3 === 'maybe'):
+    case (q1 === 'yes' && q2 === 'no'):
       window.location.href = "all-maybe-page.html"; // Redirect if all first three are "maybe"
       break;
-    case (q1 === 'yes' && q2 === 'no' && q3 === 'maybe'):
+    case (q1 === 'no' && q2 === 'no'):
       window.location.href = "yes-no-maybe-page.html"; // Redirect if first is "yes", second is "no", and third is "maybe"
       break;
     default:
